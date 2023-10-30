@@ -83,32 +83,6 @@ def create_embeddings_textlabels(to_embed, model, encoders):
 
   return embs, labels_encod
 
-
-
-def plot_tsne_for_j(j, embs, labels_encod):
-
-    tsne = manifold.TSNE(init='pca', random_state=100, method='exact', perplexity=embs[j].shape[1]-1, learning_rate=100)
-    Y = tsne.fit_transform(embs[j])
-    if embs[j].shape[0] >= 10:
-      km = KMeans(n_clusters = 4)
-      km.fit(embs[j])
-      clus = km.labels_
-      plt.scatter(-Y[:, 0], -Y[:, 1], c = clus)
-    else:
-      plt.scatter(-Y[:, 0], -Y[:, 1])
-    for i, txt in enumerate(labels_encod[j]):
-        plt.annotate(txt, (-Y[i, 0],-Y[i, 1]), xytext = (-20, 8), textcoords = 'offset points', fontsize=27)
-
-    num_rows = (len(embs) + 2) // 3  # Calcola il numero di righe necessarie per visualizzare tutti i plot su 3 colonne
-    plt.figure(figsize=(40,30))
-    for idx in range(len(embs)):
-       plt.subplot(num_rows, 3, idx+1)  # crea un subplot su 3 colonne
-       plot_tsne_for_j(idx, embs, labels_encod)
-       plt.title(f"Plot for j={idx}")
-
-    plt.tight_layout()
-    plt.show()
-
 def plot_embs_j(embs, labels_encod, j):
   tsne = manifold.TSNE(init='pca', random_state=100, method='exact', perplexity=5, learning_rate=100)
   Y = tsne.fit_transform(embs[j])
@@ -123,5 +97,15 @@ def plot_embs_j(embs, labels_encod, j):
   for i, txt in enumerate(labels_encod[0]):
       plt.annotate(txt, (-Y[i, 0],-Y[i, 1]), xytext = (-20, 8), textcoords = 'offset points', fontsize=27)
 
+
+# train = train.loc[df.data < train_test_split]
+# seas = [determina_stagione(datas[i]) for i in range(train.shape[0])]
+# train['season'] = seas
+# to_embed = ['denominazione_regione', 'year', 'month', 'dow', 'season']
+# X_train_le, X_train_ee, y_train_ee, encoders = prepare_for_encoding(to_embed, train)
+# model = EEmodel(to_embed, X_train_ee, 2, [256, 64])
+# model.compile(loss = 'mse', optimizer = tf.keras.optimizers.Adam(learning_rate = .001), metrics = ['mae'])
+# model.fit(X_train_le, y_train_ee, epochs = 50, shuffle = True)
+# embs, labels_encod = create_embeddings_textlabels(to_embed, model, encoders)
 
 

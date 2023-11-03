@@ -1,3 +1,17 @@
+tfd = tfp.distributions
+tfb = tfp.bijectors
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense
+tfpl = tfp.layers
+
+from tensorflow.keras import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import LSTM, Dense, Dropout, TimeDistributed, Conv1D, MaxPooling1D, Flatten, Input, Flatten, Activation, Reshape, RepeatVector, Concatenate, GRU, Embedding
+from tensorflow.keras.utils import plot_model
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+from keras.layers import Lambda
+
+
 def MHCNN_poisson():
   input_layer = Input(shape=(LOOK_BACK, n_features)) #n_features corrispondono al numero di regioni
   head_list = []

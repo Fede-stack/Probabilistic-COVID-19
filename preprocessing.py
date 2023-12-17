@@ -24,6 +24,9 @@ def to_minmax(df_train, df_test, df_pivot):
   return scaled_train, scaled_test
 
 def split_sequence(sequence, look_back, forecast_horizon):
+  """
+  Specifically for 1-day Prediction
+  """
   X = [] 
   y = []
   ind_ = []
@@ -40,6 +43,9 @@ def split_sequence(sequence, look_back, forecast_horizon):
   return np.array(X), np.array(y), ind_
 
 def estrai_info(data):
+  """
+  Info Related to DOW and Season
+  """
     giorni = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"]
     giorno_settimana = giorni[data.weekday()]
     mese = data.month
@@ -90,3 +96,14 @@ def evaluate_forecast(y_test, yhat):
  mse = mean_squared_error(y_test,yhat)
  print('mse:', mse)
  return mae, mse
+
+def create_inputs(scaled_train, scaled_test, LOOK_BACK, FORECAST_RANGE, df_train, df_test, to_embed):
+  X_train, y_train, ind_train = split_sequence(scaled_train, look_back=LOOK_BACK, forecast_horizon=FORECAST_RANGE)
+  X_test, y_test, ind_test = split_sequence(scaled_test, look_back=LOOK_BACK, forecast_horizon=FORECAST_RANGE)
+  y_train = y_train.reshape(...).astype(np.float32) #reshape according to the range of forecast
+  y_test = y_test.reshape(...).astype(np.float32)
+  train_embs = create_data_forEE(df_train, y_train, ind_train, to_embed)
+  test_embs = create_data_forEE(df_test, y_test, ind_test, to_embed)
+
+  X_train_le, X_test_le, X_train_embs, X_test_embs, encoders = prepare_for_encoding(to_embed, train_embs, test_embs)
+  return X_train, y_train, X_test, y_test, X_train_le, X_test_le, X_train_embs, X_test_embs, encoders

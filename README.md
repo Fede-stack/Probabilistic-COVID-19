@@ -1,6 +1,8 @@
-# Probabilistic-COVID-19
+# A Spatio-Temporal Probabilistic Neural Network to Forecast COVID-19 Counts
 
-This code repository is related to the paper *A Spatio-Temporal Probabilistic Neural Network to Forecast COVID-19 Counts*
+This code repository is related to the paper *A Spatio-Temporal Probabilistic Neural Network to Forecast COVID-19 Counts* by Ravenda et al.
+
+
 
 For **citing** this work refer to
 

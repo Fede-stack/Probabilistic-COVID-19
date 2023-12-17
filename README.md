@@ -19,7 +19,7 @@ Main steps for the preprocessing step are listed in:
 
 **Figure 2. Low-Dimensional representations (Embeddings) related to the spatial information input.**
 
-To implement Entity Embedding for each Spatial and Temporal Information refer to: 
+To implement Entity Embedding for both Spatial and Temporal Information refer to: 
 - `entity_embedding.py` 
   
 For **citing** this work refer to

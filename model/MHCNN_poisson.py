@@ -9,7 +9,7 @@ tfd = tfp.distributions
 tfb = tfp.bijectors
 tfpl = tfp.layers
 
-def MHCNN_poisson():
+def MHCNN_poisson(FORECAST_RANGE):
   input_layer = Input(shape=(LOOK_BACK, n_features)) #n_features corrispondono al numero di regioni
   head_list = []
   for i in range(0, n_features):
@@ -43,8 +43,8 @@ def MHCNN_poisson():
   dense1 = Dense(128, activation = 'relu')(concat_flat)
   drop = Dropout(.2)(dense1)
   dense2 = Dense(16, activation = 'relu')(drop)
-  outs = Dense(1, activation = 'relu')(dense2)
-  outs = tfpl.IndependentPoisson(1)(outs)
+  outs = Dense(FORECAST_RANGE, activation = 'relu')(dense2)
+  outs = tfpl.IndependentPoisson(event_shape=(FORECAST_RANGE,))(outs)
 
   model_ = Model([input_layer, [inputs]], outs)
   return model_

@@ -25,8 +25,12 @@ To implement Entity Embedding for both Spatial and Temporal Information refer to
 For **citing** this work refer to
 
 ```
-@article{ravendaspatio,
-title={A Spatio-Temporal Probabilistic Neural Network to Forecast COVID-19 Counts},
-author={Ravenda, Federico and Cesarini, Mirko and Peluso, Stefano and Mira, Antonietta}
+@article{ravenda2024probabilistic,
+  title={A probabilistic spatio-temporal neural network to forecast COVID-19 counts},
+  author={Ravenda, Federico and Cesarini, Mirko and Peluso, Stefano and Mira, Antonietta},
+  journal={International Journal of Data Science and Analytics},
+  pages={1--8},
+  year={2024},
+  publisher={Springer}
 }
 ```

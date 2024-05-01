@@ -6,7 +6,6 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, TimeDistributed, Conv1
 
 import tensorflow_probability as tfp
 tfd = tfp.distributions
-tfb = tfp.bijectors
 tfpl = tfp.layers
 
 def MHCNN_poisson(FORECAST_RANGE):
